@@ -70,19 +70,3 @@ export const landingPageQuery = `{
   }
 }`;
 
-// Legacy queries (keeping for backwards compatibility)
-export const heroQuery = `*[_type == "heroSection"][0] {
-  title,
-  subtitle,
-  ctaText,
-  ctaLink,
-  backgroundImage
-}`;
-
-export const featuresQuery = `*[_type == "feature"] | order(order asc) {
-  _id,
-  title,
-  description,
-  icon,
-  order
-}`;

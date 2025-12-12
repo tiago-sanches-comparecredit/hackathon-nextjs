@@ -9,6 +9,9 @@ import { getLandingPageContent } from "@/lib";
 export default async function Home() {
   // Fetch content from Sanity (returns null/empty if not configured)
   const { settings, home, products } = await getLandingPageContent();
+  console.log("🚀 ~ Home ~ settings:", settings);
+  console.log("🚀 ~ Home ~ home:", home);
+  console.log("🚀 ~ Home ~ products:", products);
 
   return (
     <div className="flex min-h-screen flex-col">

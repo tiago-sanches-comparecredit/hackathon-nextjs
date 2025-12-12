@@ -1,5 +1,4 @@
 import { siteConfig } from "@/config/site";
-import Link from "next/link";
 
 interface HeroProps {
   // Content comes from Sanity CMS
@@ -13,8 +12,6 @@ interface HeroProps {
 const defaults = {
   title: `Welcome to ${siteConfig.name}`,
   subtitle: "Add your hero content in Sanity CMS to customize this section.",
-  ctaText: "Get Started",
-  ctaLink: "/signup",
 };
 
 /**
@@ -24,8 +21,6 @@ const defaults = {
 export function Hero({
   title = defaults.title,
   subtitle = defaults.subtitle,
-  ctaText = defaults.ctaText,
-  ctaLink = defaults.ctaLink,
 }: HeroProps) {
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-gray-50 to-white py-20 sm:py-32">
@@ -45,23 +40,6 @@ export function Hero({
         <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-gray-600">
           {subtitle}
         </p>
-
-        <div className="mt-10 flex items-center justify-center gap-4">
-          <Link
-            href={ctaLink}
-            className="rounded-full px-8 py-3 text-base font-semibold text-white shadow-lg transition-all hover:opacity-90 hover:shadow-xl"
-            style={{ backgroundColor: siteConfig.primaryColor }}
-          >
-            {ctaText}
-          </Link>
-
-          <Link
-            href="#features"
-            className="rounded-full border border-gray-300 px-8 py-3 text-base font-semibold text-gray-700 transition-colors hover:bg-gray-50"
-          >
-            Learn More
-          </Link>
-        </div>
       </div>
     </section>
   );
