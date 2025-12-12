@@ -3,7 +3,74 @@
  * These queries are used by the data fetching functions.
  */
 
-// Fetch the hero section content
+// Fetch site settings (singleton)
+export const settingsQuery = `*[_type == "settings"][0] {
+  siteName,
+  logo {
+    asset-> {
+      url
+    }
+  },
+  logoAlt
+}`;
+
+// Fetch home page content (singleton)
+export const homeQuery = `*[_type == "home"][0] {
+  title,
+  subtitle,
+  ctaText,
+  ctaLink
+}`;
+
+// Fetch all products ordered by display order
+export const productsQuery = `*[_type == "product"] | order(order asc) {
+  _id,
+  name,
+  slug,
+  image {
+    asset-> {
+      url
+    }
+  },
+  details,
+  ctaText,
+  ctaLink,
+  order
+}`;
+
+// Combined query for landing page (more efficient - single request)
+export const landingPageQuery = `{
+  "settings": *[_type == "settings"][0] {
+    siteName,
+    logo {
+      asset-> {
+        url
+      }
+    },
+    logoAlt
+  },
+  "home": *[_type == "home"][0] {
+    title,
+    subtitle,
+    ctaText,
+    ctaLink
+  },
+  "products": *[_type == "product"] | order(order asc) {
+    _id,
+    name,
+    slug,
+    image {
+      asset-> {
+        url
+      }
+    },
+    details,
+    ctaText,
+    ctaLink
+  }
+}`;
+
+// Legacy queries (keeping for backwards compatibility)
 export const heroQuery = `*[_type == "heroSection"][0] {
   title,
   subtitle,
@@ -12,28 +79,10 @@ export const heroQuery = `*[_type == "heroSection"][0] {
   backgroundImage
 }`;
 
-// Fetch all features ordered by display order
 export const featuresQuery = `*[_type == "feature"] | order(order asc) {
   _id,
   title,
   description,
   icon,
   order
-}`;
-
-// Combined query for landing page (more efficient - single request)
-export const landingPageQuery = `{
-  "hero": *[_type == "heroSection"][0] {
-    title,
-    subtitle,
-    ctaText,
-    ctaLink,
-    backgroundImage
-  },
-  "features": *[_type == "feature"] | order(order asc) {
-    _id,
-    title,
-    description,
-    icon
-  }
 }`;

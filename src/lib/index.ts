@@ -3,12 +3,16 @@
  */
 
 export { getClient, urlFor, isSanityConfigured } from "./sanity";
-export { heroQuery, featuresQuery, landingPageQuery } from "./queries";
 export {
-  getHero,
-  getFeatures,
+  settingsQuery,
+  homeQuery,
+  productsQuery,
+  landingPageQuery,
+} from "./queries";
+export {
   getLandingPageContent,
-  type HeroContent,
-  type Feature,
+  type Settings,
+  type HomeContent,
+  type Product,
   type LandingPageContent,
 } from "./sanity-fetch";
